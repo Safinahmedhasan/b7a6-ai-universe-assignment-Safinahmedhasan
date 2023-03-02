@@ -8,7 +8,7 @@ const loadData = () => {
 
 const showCountris = aiUniverse =>{
     const aiUniverseContainer = document.getElementById('dataContainer')
-    // aiUniverse = aiUniverse.slice(0,6);
+    aiUniverseContainer.innerHTML = "";
     aiUniverse.forEach(universe => {
         const universeDiv = document.createElement('div')
         universeDiv.classList.add('col');
@@ -32,23 +32,11 @@ const showCountris = aiUniverse =>{
     })
 }
 
-
-
-
-const toggleSpinner = isLoading => {
-    const loadSection = document.getElementById('spinner')
-    if(isLoading){
-        loaderSection.classList.remove('d.none ')
-    }
+const showAllAi = () => {
+        const URL = ('https://openapi.programming-hero.com/api/ai/tools')
+        fetch(URL)
+        .then(res => res.json())
+        .then(data => showCountris(data.data.tools ))
 }
- 
-
-
-
-
-
-
-
-
 
 loadData(); 
