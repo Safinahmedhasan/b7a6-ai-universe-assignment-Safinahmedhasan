@@ -17,9 +17,9 @@ const showCountris = aiUniverse =>{
                 <img src="${universe.image}" class="card-img-top p-3 rounded" alt="...">
             <div class="card-body p-3">
                 <h5 class="card-title">Features</h5>
-                <li class="nav">1 ${universe.features[0]}</li>
-                <li class="nav">2 ${universe.features[1]}</li>
-                <li class="nav">3 ${universe.features[2]}</li>
+                <li class="nav">1 ${universe.features[0] ?  universe.features[0] : 'No Features Data found'}</li>
+                <li class="nav">2 ${universe.features[1] ?  universe.features[1] : 'No Features Data found'}</li>
+                <li class="nav">3 ${universe.features[2] ?  universe.features[2] : 'No Features Data found'}</li>
             </div>
             <div class="card-footer p-3">
                 <h5 class="card-title">${universe.name}</h5>
@@ -58,18 +58,53 @@ const showModalAiCountris = aiModalUniverse =>{
     aiUniverseContainer.innerHTML = `
     
     <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card">
+    <div class="card" style="background: #FEF7F7;">
       <div class="card-body">
         <h5 class="card-title">${aiModalUniverse.description}</h5>
-        <div></div>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <div class="d-flex">
+            <div class="p-3 rounded text-danger fw-bold" style="background: #FFFFFF;">
+                <div style="width:55px;">
+                    ${aiModalUniverse.pricing[0].price}
+                </div>
+            </div>
+            <div class="p-3 rounded ms-2 text-warning fw-bold" style="background: #FFFFFF;">
+                <div style="width:55px;">
+                    ${aiModalUniverse.pricing[1].price}
+                </div>
+            </div>
+            <div class="p-3 rounded ms-2 text-success fw-bold" style="background: #FFFFFF;">
+                <div style="width:55px;">
+                    ${aiModalUniverse.pricing[2].price}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+           <div class="col-6">
+           <h5>Features</h5>
+           <ul><li>${aiModalUniverse.features[1].feature_name ? aiModalUniverse.features[1].feature_name : 'No Features Data found'}</li></ul>
+           <ul><li>${aiModalUniverse.features[2].feature_name ? aiModalUniverse.features[2].feature_name : 'No Features Data found'}</li></ul>
+           <ul><li>${aiModalUniverse.features[3].feature_name ? aiModalUniverse.features[3].feature_name : 'No Features Data found'}</li></ul>
+           </div>
+           <div class="col-6">
+           <h5>Integrations</h5>
+            <div>
+                <p>${aiModalUniverse.integrations[0] ? aiModalUniverse.integrations[0] : 'No Integrations Found' }</p>
+                <p>${aiModalUniverse.integrations[1] ? aiModalUniverse.integrations[1] : 'No Integrations Found' }</p>
+                <p>${aiModalUniverse.integrations[2] ? aiModalUniverse.integrations[2] : 'No Integrations Found' }</p>
+            </div>
+           </div>
+        </div>
+
       </div>
     </div>
   </div>
+
+
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-      <img src="${aiModalUniverse.image_link , aiModalUniverse.image_link[0]}" class="img-fluid" alt="">
+      <img src="${aiModalUniverse.image_link , aiModalUniverse.image_link[0]}" class="img-fluid rounded" alt="">
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
       </div>
     </div>
