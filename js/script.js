@@ -46,8 +46,13 @@ const showAllAi = () => {
         const URL = ('https://openapi.programming-hero.com/api/ai/tools')
         fetch(URL)
         .then(res => res.json())
-        .then(data => showCountris(data.data.tools ))
+        .then(data => showCountris(data.data.tools));
+
+        // showAllAi(data.data.tools);
+        // const showbutton = document.getElementById('showAllAi')
+        // showbutton.style.display ='none';
 }
+
 
 
 const loadModalData = async id => {
@@ -59,6 +64,9 @@ const loadModalData = async id => {
 }
 
 const showModalAiCountris = aiModalUniverse =>{
+
+const accuracyN = (aiModalUniverse.accuracy.score * 100) + '%' + 'accuracy';
+
     console.log(aiModalUniverse);
     const aiUniverseContainer = document.getElementById('under-section-modal')
     aiUniverseContainer.innerHTML = `
@@ -110,7 +118,9 @@ const showModalAiCountris = aiModalUniverse =>{
     <div class="card">
       <div class="card-body">
       <img src="${aiModalUniverse.image_link , aiModalUniverse.image_link[0]}" class="img-fluid rounded" alt="">
-        <div class="bg-danger w-25  text-light text-center rounded">Hasan</div>
+
+        <div id="accuracy" class="bg-danger w-50  text-light text-center rounded" style="position:absolute; margin-left:120px; margin-top:-155px">${aiModalUniverse.accuracy.score ? accuracyN : ''}</div>
+
         <h5 class="card-text text-center mt-2 p-2">${aiModalUniverse.input_output_examples[0].input}</h5>
         <p class="card-text text-center mt-2 p-2">${aiModalUniverse.input_output_examples[1].output ? aiModalUniverse.input_output_examples[1].output : 'No! Not Yet! Take a break!!!'} </p>
       </div>
@@ -118,8 +128,9 @@ const showModalAiCountris = aiModalUniverse =>{
   </div>
     `;
     
-    
 }
+
+
 
 
 const spinnerToggle =(isLoading) =>{
@@ -131,8 +142,6 @@ const spinnerToggle =(isLoading) =>{
         spinnerSection.classList.add('d-none')
     }
 }
-
- 
 
 
 loadData(); 
