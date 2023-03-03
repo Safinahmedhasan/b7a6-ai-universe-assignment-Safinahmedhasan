@@ -48,17 +48,35 @@ const loadModalData = async id => {
     const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data); 
+    showModalAiCountris(data.data); 
 
 }
 
 const showModalAiCountris = aiModalUniverse =>{
-    const aiUniverseContainer = document.getElementById('aiUnuModal')
-    aiModalUniverse.forEach(universeModal => {
-        const universeModalDiv = document.createElement('div')
-        universeModalDiv.innerHTML =``
-
-    })
+    console.log(aiModalUniverse);
+    const aiUniverseContainer = document.getElementById('under-section-modal')
+    aiUniverseContainer.innerHTML = `
+    
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">${aiModalUniverse.description}</h5>
+        <div></div>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+      <img src="${aiModalUniverse.image_link , aiModalUniverse.image_link[0]}" class="img-fluid" alt="">
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+    `;
+    
+    
 }
 
 
