@@ -31,47 +31,31 @@
         <section class="text-center mt-1 mb-5">
             <button onclick="showAllAi()" class="btn btn-danger mt-3">See More</button>
         </section>
-
-
-
-
-    <section>
-        <div class="modal fade" id="aiUnuModal" tabindex="-1" aria-labelledby="aiUnuModalLabel" aria-hidden="true">
-            <div class="modal-dialog mx-auto" >
-            <div class="modal-content"  style="width: 700px;">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="aiUnuModalLabel"></h1>
-                <button type="button" class="btn-close bg-danger rounded-circle" style="margin-left: 665px; margin-top: -30px; position: absolute;" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- modal -->
+        <section>
+            <div class="modal fade" id="aiUnuModal" tabindex="-1" aria-labelledby="aiUnuModalLabel" aria-hidden="true">
+                <div class="modal-dialog mx-auto" >
+                <div class="modal-content"  style="width: 700px;">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="aiUnuModalLabel"></h1>
+                    <button type="button" class="btn-close bg-danger rounded-circle" style="margin-left: 665px; margin-top: -30px; position: absolute;" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="row mt-2" id="under-section-modal">    
+                    </div>
                 </div>
-                <div class="modal-body">
-                   
+                </div>
+        </section>
 
+        <section id="spinner" class="d-none">
+            <div class="d-flex justify-content-center aling-items-center">
+                <div class="spinner-border text-danger" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+        </section>
 
-            
-
-            <div class="row mt-2" id="under-section-modal">
-                    
-                  
-            </div>
-            </div>
-            </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-    </main>
-
-
-
-
+ </main>
 
 
 

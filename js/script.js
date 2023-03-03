@@ -1,4 +1,5 @@
 const loadData = () => {
+    spinnerToggle(true)
     const URL = ('https://openapi.programming-hero.com/api/ai/tools')
     fetch(URL)
     .then(res => res.json())
@@ -24,7 +25,6 @@ const showCountris = aiUniverse =>{
             <div class="card-footer p-3">
                 <h5 class="card-title">${universe.name}</h5>
                  <small class="text-muted"><i class="fa-regular fa-calendar-days"></i> ${universe.published_in}</small>
-
                  <button onclick="loadModalData('${universe.id}')" style=" background:#f2d1d1; border-radius:50%; float: right; margin-top:-20px;" type="button" class="btn text-danger" data-bs-toggle="modal" data-bs-target="#aiUnuModal">&#8594;</button>
 
             </div>
@@ -33,8 +33,14 @@ const showCountris = aiUniverse =>{
         `;
 
         aiUniverseContainer.appendChild(universeDiv);
-    })
+    });
+    // stop loader 
+    spinnerToggle(false)
 }
+
+
+
+
 
 const showAllAi = () => {
         const URL = ('https://openapi.programming-hero.com/api/ai/tools')
@@ -82,20 +88,19 @@ const showModalAiCountris = aiModalUniverse =>{
         <div class="row mt-2">
            <div class="col-6">
            <h5>Features</h5>
-           <ul><li>${aiModalUniverse.features[1].feature_name ? aiModalUniverse.features[1].feature_name : 'No Features Data found'}</li></ul>
-           <ul><li>${aiModalUniverse.features[2].feature_name ? aiModalUniverse.features[2].feature_name : 'No Features Data found'}</li></ul>
-           <ul><li>${aiModalUniverse.features[3].feature_name ? aiModalUniverse.features[3].feature_name : 'No Features Data found'}</li></ul>
+           <ul><li>${aiModalUniverse.features[1].feature_name ? aiModalUniverse.features[1].feature_name : 'No Data found'}</li></ul>
+           <ul><li>${aiModalUniverse.features[2].feature_name ? aiModalUniverse.features[2].feature_name : 'No Data found'}</li></ul>
+           <ul><li>${aiModalUniverse.features[3].feature_name ? aiModalUniverse.features[3].feature_name : 'No Data found'}</li></ul>
            </div>
            <div class="col-6">
            <h5>Integrations</h5>
             <div>
-                <p>${aiModalUniverse.integrations[0] ? aiModalUniverse.integrations[0] : 'No Integrations Found' }</p>
-                <p>${aiModalUniverse.integrations[1] ? aiModalUniverse.integrations[1] : 'No Integrations Found' }</p>
-                <p>${aiModalUniverse.integrations[2] ? aiModalUniverse.integrations[2] : 'No Integrations Found' }</p>
+                <p>${aiModalUniverse.integrations[0] ? aiModalUniverse.integrations[0] : 'No Data Found' }</p>
+                <p>${aiModalUniverse.integrations[1] ? aiModalUniverse.integrations[1] : 'No Data Found' }</p>
+                <p>${aiModalUniverse.integrations[2] ? aiModalUniverse.integrations[2] : 'No Data Found' }</p>
             </div>
            </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -105,7 +110,9 @@ const showModalAiCountris = aiModalUniverse =>{
     <div class="card">
       <div class="card-body">
       <img src="${aiModalUniverse.image_link , aiModalUniverse.image_link[0]}" class="img-fluid rounded" alt="">
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <div class="bg-danger w-25  text-light text-center rounded">Hasan</div>
+        <h5 class="card-text text-center mt-2 p-2">${aiModalUniverse.input_output_examples[0].input}</h5>
+        <p class="card-text text-center mt-2 p-2">${aiModalUniverse.input_output_examples[1].output ? aiModalUniverse.input_output_examples[1].output : 'No! Not Yet! Take a break!!!'} </p>
       </div>
     </div>
   </div>
@@ -115,16 +122,20 @@ const showModalAiCountris = aiModalUniverse =>{
 }
 
 
+const spinnerToggle =(isLoading) =>{
+    const spinnerSection = document.getElementById('spinner');
+    if(isLoading){
+        spinnerSection.classList.remove('d-none')
+    }
+    else{
+        spinnerSection.classList.add('d-none')
+    }
+}
 
-
-
-
-
-
-
+ 
 
 
 loadData(); 
 
-
-
+     
+    
