@@ -1,11 +1,21 @@
-const loadData = () => {
+const loadData = (isTrue) => {
     spinnerToggle(true)
     const URL = ('https://openapi.programming-hero.com/api/ai/tools')
     fetch(URL)
     .then(res => res.json())
     .then(data => showCountris(data.data.tools.slice(0, 6)))
-    
+
+    function dateSort(a, b) {
+        return new Date(b.published_in).valueOf() -new Date(a.published_in).valueOf();
+    }
+
+    if(isTrue === true) {
+        showData(data.data.tools.slice(0, 6).sort(dateSort))
+    } else if (isTrue === false) {
+        showData(data.data.tools.slice(0, 6))
+    }
 }
+
 
 const showCountris = aiUniverse =>{
     const aiUniverseContainer = document.getElementById('dataContainer')
@@ -48,9 +58,7 @@ const showAllAi = () => {
         .then(res => res.json())
         .then(data => showCountris(data.data.tools));
 
-        // showAllAi(data.data.tools);
-        // const showbutton = document.getElementById('showAllAi')
-        // showbutton.style.display ='none';
+     
 }
 
 
