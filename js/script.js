@@ -1,10 +1,8 @@
-const loadData = (isTrue) => {
+let sortDescending = async (isTrue) => {
     spinnerToggle(true)
-    const URL = ('https://openapi.programming-hero.com/api/ai/tools')
-    fetch(URL)
-    .then(res => res.json())
-    .then(data => showCountris(data.data.tools.slice(0, 6)))
-
+    let url = 'https://openapi.programming-hero.com/api/ai/tools'
+    let res = await fetch(url)
+    let data = await res.json()
     function dateSort(a, b) {
         return new Date(b.published_in).valueOf() -new Date(a.published_in).valueOf();
     }
@@ -17,7 +15,18 @@ const loadData = (isTrue) => {
 }
 
 
-const showCountris = aiUniverse =>{
+
+const showData = aiUniverse =>{
+
+    // show all data
+    const showAllBtn = document.getElementById('showAllAi');
+    if(aiUniverse.length <= 6){
+         showAllBtn.classList.remove('d-none')
+    }
+    else{
+        showAllBtn.classList.add('d-none')
+    }
+
     const aiUniverseContainer = document.getElementById('dataContainer')
     aiUniverseContainer.innerHTML = "";
     aiUniverse.forEach(universe => {
@@ -56,9 +65,7 @@ const showAllAi = () => {
         const URL = ('https://openapi.programming-hero.com/api/ai/tools')
         fetch(URL)
         .then(res => res.json())
-        .then(data => showCountris(data.data.tools));
-
-     
+        .then(data => showData(data.data.tools)); 
 }
 
 
@@ -152,7 +159,7 @@ const spinnerToggle =(isLoading) =>{
 }
 
 
-loadData(); 
+
 
      
     
